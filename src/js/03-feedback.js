@@ -10,22 +10,22 @@ formEl.addEventListener('input', throttle(() => {
   localStorage.setItem('feedback-form-state', JSON.stringify(formObj));
 }, 500));
 
-const localForm = localStorage.getItem('feedback-form-state');
-
-if (localForm) {
-    const { email, message } = JSON.parse(localForm);
-    formEl.email.value = email,
-        formEl.message.value = email;
+const localFormData = localStorage.getItem('feedback-form-state');
+if (localFormData) {
+  const { email, message } = JSON.parse(localFormData);
+  formEl.email.value = email;
+  formEl.message.value = message;
 }
 
 formEl.addEventListener('submit', (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    formEl.email.value = '';
-    formEl.message.value = '';
-    localStorage.setItem('feedback-form-state', JSON.stringify({
-        email: '',
-        message: '',
-    }));
-    console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
+  formEl.email.value = '';
+  formEl.message.value = '';
+  localStorage.setItem('feedback-form-state', JSON.stringify({
+    email: '',
+    message: '',
+  }));
+
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
 });
